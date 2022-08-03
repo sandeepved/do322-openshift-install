@@ -1,0 +1,18 @@
+apiVersion: config.openshift.io/v1
+kind: Infrastructure
+metadata:
+  creationTimestamp: null
+  name: cluster
+spec:
+  cloudConfig:
+    name: ""
+  platformSpec:
+    type: None
+status:
+  apiServerInternalURI: https://api-int.ocp4.example.com:6443
+  apiServerURL: https://api.ocp4.example.com:6443
+  etcdDiscoveryDomain: ocp4.example.com
+  infrastructureName: ocp4-tmt4g
+  platform: None
+  platformStatus:
+    type: None

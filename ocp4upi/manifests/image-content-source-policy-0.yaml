@@ -1,0 +1,10 @@
+apiVersion: operator.openshift.io/v1alpha1
+kind: ImageContentSourcePolicy
+metadata:
+  creationTimestamp: null
+  name: image-policy-0
+spec:
+  repositoryDigestMirrors:
+  - mirrors:
+    - nexus-registry-int.apps.tools-ap.prod.nextcle.com/openshift/ocp4
+    source: quay.io/openshift-release-dev/ocp-release

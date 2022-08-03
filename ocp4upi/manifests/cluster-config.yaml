@@ -1,0 +1,46 @@
+apiVersion: v1
+data:
+  install-config: |
+    apiVersion: v1
+    baseDomain: example.com
+    compute:
+    - architecture: amd64
+      hyperthreading: Enabled
+      name: worker
+      platform: {}
+      replicas: 2
+    controlPlane:
+      architecture: amd64
+      hyperthreading: Enabled
+      name: master
+      platform: {}
+      replicas: 3
+    imageContentSources:
+    - mirrors:
+      - nexus-registry-int.apps.tools-ap.prod.nextcle.com/openshift/ocp4
+      source: quay.io/openshift-release-dev/ocp-release
+    - mirrors:
+      - nexus-registry-int.apps.tools-ap.prod.nextcle.com/openshift/ocp4
+      source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+    metadata:
+      creationTimestamp: null
+      name: ocp4
+    networking:
+      clusterNetwork:
+      - cidr: 10.128.0.0/14
+        hostPrefix: 23
+      machineNetwork:
+      - cidr: 10.0.0.0/16
+      networkType: OpenShiftSDN
+      serviceNetwork:
+      - 172.30.0.0/16
+    platform:
+      none: {}
+    publish: External
+    pullSecret: ""
+    sshKey: |
+      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDOQpZTh6yHaCPwt3A4VLT4sLpDlUaL/TKZgRH58g2B1suWavBZXdxdOsG9r3Fqnd6s35xlXeGD80I1HhVGxMqmxQl5W1muc/cmA+WZQXpim0Bub8WU8szDGeYe+Hdc6RSA5vILGyhLl1NYizDAYKkIy2eO9+eWWNTs1pLijGV6QdO9GmFa79D1YR/U2l0xI1CAnZAqbSBvlKI/WoCXDTQUQ61Kl/zhpuR02Lfo4HZkuTpI2Xe7DUVdzrcdCLeG+5rl3EZXtKcb30TgjFHe++OV7FEgzx34EFFKN7RidZjDn1XuU1QfbZMnId46LaVrpDkh1u0JAojKQsvaUyuO0iHmAZ3pwjWV7dmKvr1rbzOg7sO8hVdO4W047zaqggKba/+N5k2z9Gt02SLdFoFChm/xRC1DAV/2zHacjMLspLdiWKP6eHRxG9eYXU82WPLHOlfkmHzejePYCk69/wLrXFLl1o+YYw4cwFdhkCjJYqebMZWWpmhm1RKgjePC5jgsw/0= lab@utility.lab.example.com
+kind: ConfigMap
+metadata:
+  name: cluster-config-v1
+  namespace: kube-system

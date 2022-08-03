@@ -1,0 +1,21 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  creationTimestamp: null
+  labels:
+    machineconfiguration.openshift.io/role: master
+  name: 99-master-ssh
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    passwd:
+      users:
+      - name: core
+        sshAuthorizedKeys:
+        - |
+          ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDOQpZTh6yHaCPwt3A4VLT4sLpDlUaL/TKZgRH58g2B1suWavBZXdxdOsG9r3Fqnd6s35xlXeGD80I1HhVGxMqmxQl5W1muc/cmA+WZQXpim0Bub8WU8szDGeYe+Hdc6RSA5vILGyhLl1NYizDAYKkIy2eO9+eWWNTs1pLijGV6QdO9GmFa79D1YR/U2l0xI1CAnZAqbSBvlKI/WoCXDTQUQ61Kl/zhpuR02Lfo4HZkuTpI2Xe7DUVdzrcdCLeG+5rl3EZXtKcb30TgjFHe++OV7FEgzx34EFFKN7RidZjDn1XuU1QfbZMnId46LaVrpDkh1u0JAojKQsvaUyuO0iHmAZ3pwjWV7dmKvr1rbzOg7sO8hVdO4W047zaqggKba/+N5k2z9Gt02SLdFoFChm/xRC1DAV/2zHacjMLspLdiWKP6eHRxG9eYXU82WPLHOlfkmHzejePYCk69/wLrXFLl1o+YYw4cwFdhkCjJYqebMZWWpmhm1RKgjePC5jgsw/0= lab@utility.lab.example.com
+  fips: false
+  kernelArguments: null
+  kernelType: ""
+  osImageURL: ""
