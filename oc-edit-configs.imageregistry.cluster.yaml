@@ -1,0 +1,73 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+# configs.imageregistry.operator.openshift.io "cluster" was not valid:
+# * spec.managementState: Invalid value: "": spec.managementState in body should match '^(Managed|Unmanaged|Force|Removed)$'
+#
+apiVersion: imageregistry.operator.openshift.io/v1
+kind: Config
+metadata:
+  creationTimestamp: "2022-08-03T16:13:29Z"
+  finalizers:
+  - imageregistry.operator.openshift.io/finalizer
+  generation: 1
+  name: cluster
+  resourceVersion: "86673"
+  selfLink: /apis/imageregistry.operator.openshift.io/v1/configs/cluster
+  uid: b685f931-d084-4d31-ada1-fb79b76eb681
+spec:
+  logLevel: Normal
+  managementState: Managed 
+  observedConfig: null
+  operatorLogLevel: Normal
+  proxy: {}
+  replicas: 2
+  requests:
+    read:
+      maxWaitInQueue: 0s
+    write:
+      maxWaitInQueue: 0s
+  rolloutStrategy: RollingUpdate
+  storage: 
+    pvc:
+      claim: registry-claim
+  unsupportedConfigOverrides: null
+status:
+  conditions:
+  - lastTransitionTime: "2022-08-03T16:13:29Z"
+    reason: AsExpected
+    status: "False"
+    type: ImageConfigControllerDegraded
+  - lastTransitionTime: "2022-08-03T16:13:29Z"
+    reason: AsExpected
+    status: "False"
+    type: ImageRegistryCertificatesControllerDegraded
+  - lastTransitionTime: "2022-08-03T16:13:29Z"
+    reason: AsExpected
+    status: "False"
+    type: NodeCADaemonControllerDegraded
+  - lastTransitionTime: "2022-08-04T06:57:24Z"
+    message: All registry resources are removed
+    reason: Removed
+    status: "False"
+    type: Progressing
+  - lastTransitionTime: "2022-08-03T16:13:31Z"
+    message: The registry is removed
+    reason: Removed
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2022-08-03T16:13:31Z"
+    message: The registry is removed
+    reason: Removed
+    status: "False"
+    type: Degraded
+  - lastTransitionTime: "2022-08-03T16:13:31Z"
+    message: The registry is removed
+    reason: Removed
+    status: "True"
+    type: Removed
+  observedGeneration: 1
+  readyReplicas: 0
+  storage: {}
+  storageManaged: false

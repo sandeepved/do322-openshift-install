@@ -1,0 +1,13 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: etherpad
+  labels:
+    app.kubernetes.io/name: etherpad
+    app.kubernetes.io/version: "latest"
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "1Gi"

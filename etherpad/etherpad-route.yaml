@@ -1,0 +1,20 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/host.generated: "true"
+  name: etherpad
+  labels:
+    app.kubernetes.io/name: etherpad
+    app.kubernetes.io/version: "latest"
+spec:
+  host:
+  port:
+    targetPort: http
+  to:
+    kind: Service
+    name: etherpad
+    weight: 100
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge

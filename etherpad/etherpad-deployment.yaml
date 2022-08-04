@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: etherpad
+  labels:
+    app.kubernetes.io/name: etherpad
+    app.kubernetes.io/version: "latest"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: etherpad
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: etherpad
+    spec:
+      securityContext:
+        {}
+      containers:
+        - env:
+          - name: TITLE
+            value: DO322 Etherpad
+          - name: DEFAULT_PAD_TEXT
+            value: Etherpad for sharing ideas between the students.
+          name: etherpad
+          securityContext:
+            {}
+          image: "quay.io/redhattraining/etherpad:latest"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 9001
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {}
+          volumeMounts:
+            - name: etherpad-data
+              mountPath: /opt/etherpad-lite/var
+      volumes:
+      - name: etherpad-data
+        persistentVolumeClaim:
+          claimName: etherpad
