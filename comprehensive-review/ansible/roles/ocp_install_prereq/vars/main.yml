@@ -1,0 +1,16 @@
+---
+# vars file
+ocp_maj: "4.6"
+rhcos_ver: "4.6.1"
+ocp_z: "4.6.4"
+
+oc_url: "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/{{ ocp_z }}/openshift-client-linux-{{ ocp_z }}.tar.gz"
+openshift_install_url: "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/{{ ocp_z }}/openshift-install-linux-{{ ocp_z }}.tar.gz"
+
+rhcos_rootfs_url: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/{{ ocp_maj }}/{{ rhcos_ver }}/rhcos-{{ rhcos_ver }}-x86_64-live-rootfs.x86_64.img"
+rhcos_kernel_url: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/{{ ocp_maj }}/{{ rhcos_ver }}/rhcos-{{ rhcos_ver }}-x86_64-live-kernel-x86_64"
+rhcos_initramfs_url: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/{{ ocp_maj }}/{{ rhcos_ver }}/rhcos-{{ rhcos_ver }}-x86_64-live-initramfs.x86_64.img"
+images_directory: /var/www/html/openshift4/images/
+
+class_tftp_sol: "http://classroom.example.com/materials/solutions/pxelinux.cfg/"
+tftp_dir: "/var/lib/tftpboot/pxelinux.cfg/"

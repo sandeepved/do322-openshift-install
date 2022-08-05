@@ -1,0 +1,89 @@
+---
+- name: Download "oc"
+  get_url:
+    url: "{{ oc_url }}"
+    dest: /home/lab/
+
+- name: Download "openshift-install"
+  get_url:
+    url: "{{ openshift_install_url }}"
+    dest: /home/lab/
+
+- name: Extract "oc" to /usr/bin/
+  ansible.builtin.unarchive:
+    src: "/home/lab/openshift-client-linux-{{ ocp_z }}.tar.gz"
+    dest: /usr/bin/
+    remote_src: yes
+
+- name: Extract "openshift-install" to /usr/bin/
+  ansible.builtin.unarchive:
+    src: "/home/lab/openshift-install-linux-{{ ocp_z }}.tar.gz"
+    dest: /usr/bin/
+    remote_src: yes
+
+- name: Download RHCOS rootfs
+  get_url:
+    url: "{{ rhcos_rootfs_url }}"
+    dest: "{{ images_directory }}"
+
+- name: Download RHCOS kernel
+  get_url:
+    url: "{{ rhcos_kernel_url }}"
+    dest: "{{ images_directory }}"
+
+- name: Download RHCOS initramfs
+  get_url:
+    url: "{{ rhcos_initramfs_url }}"
+    dest: "{{ images_directory }}"
+
+- name: Download bootstrap PXE Boot file
+  get_url:
+    url: "{{ class_tftp_sol }}/01-52-54-00-00-32-09"
+    dest: "{{ tftp_dir }}"
+
+- name: Download master01 PXE boot file
+  get_url:
+    url: "{{ class_tftp_sol }}/01-52-54-00-00-32-0a"
+    dest: "{{ tftp_dir }}"
+
+- name: Download master02 PXE Boot file
+  get_url:
+    url: "{{ class_tftp_sol }}/01-52-54-00-00-32-0b"
+    dest: "{{ tftp_dir }}"
+
+- name: Download master03 PXE Boot file
+  get_url:
+    url: "{{ class_tftp_sol }}/01-52-54-00-00-32-0c"
+    dest: "{{ tftp_dir }}"
+
+# /etc/haproxy/haproxy.cfg is root:root 0644
+
+- name: Configure haproxy.cfg file
+  ansible.builtin.copy:
+    src: haproxy.cfg
+    dest: /etc/haproxy/haproxy.cfg
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Reload HAProxy service
+  ansible.builtin.systemd:
+    name: haproxy
+    state: reloaded
+
+- name: Create the OpenShift installation directory if it does not exist
+  ansible.builtin.file:
+    path: /home/lab/ocp4upi
+    state: directory
+    owner: lab
+    group: lab
+    mode: '0755'
+
+- name: Create custom install-config.yaml file
+  ansible.builtin.copy:
+    src: install-config.yaml
+    dest: /home/lab/ocp4upi/install-config.yaml
+    owner: lab
+    group: lab
+    mode: '0644'
+

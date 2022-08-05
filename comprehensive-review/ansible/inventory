@@ -1,0 +1,2 @@
+[helper_vm]
+utility.lab.example.com ansible_host=172.25.250.253 ansible_user=lab ansible_ssh_private_key_file=/home/student/.ssh/lab_rsa

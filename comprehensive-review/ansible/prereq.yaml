@@ -1,0 +1,7 @@
+---
+- name: Configure Prerequisites
+  hosts: helper_vm
+  become: true
+  gather_facts: false
+  roles:
+    - ocp_install_prereq
